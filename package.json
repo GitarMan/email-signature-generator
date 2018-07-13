@@ -8,6 +8,8 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "clipboard": "^2.0.1",
+    "html-minifier": "^3.5.18",
     "vue": "^2.5.16"
   },
   "devDependencies": {
