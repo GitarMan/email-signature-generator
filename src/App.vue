@@ -227,7 +227,6 @@ h2 {
 
     @media (min-width: $tablet) {
       margin-bottom: 2rem;
-      // justify-content: flex-start;
     }
   }
 
@@ -405,11 +404,6 @@ export default {
     emailLink() {
       return 'mailto:' + this.email;
     }
-
-    // rawHTML() {
-    //   var html = document.getElementById("source-wrapper").innerHTML;
-    //   return html;
-    // }
   },
   updated: function () {
     this.$nextTick(function () {
@@ -418,62 +412,8 @@ export default {
     })
   },
   mounted() {
-    // console.log('Mounted');
     var html = document.getElementById('source-wrapper').innerHTML;
     document.getElementById('raw-html-text').innerHTML = html;
-
-    // this.rawHTML();
-
-    // function rawHTML() {
-    //   return document.getElementById('source-wrapper');
-    // }
-    // var clipboard = new ClipboardJS('.btn');
-
-
-    // ClipboardJS.on('success', function(e) {
-    //     console.info('Action:', e.action);
-    //     console.info('Text:', e.text);
-    //     console.info('Trigger:', e.trigger);
-    //
-    //     e.clearSelection();
-    // });
-    //
-    // ClipboardJS.on('error', function(e) {
-    //     console.error('Action:', e.action);
-    //     console.error('Trigger:', e.trigger);
-    // });
-
-
-    // clipboard.on('success', function(e) {
-    //     console.info('Action:', e.action);
-    //     console.info('Text:', e.text);
-    //     console.info('Trigger:', e.trigger);
-    //
-    //     e.clearSelection();
-    // });
-    //
-    // clipboard.on('error', function(e) {
-    //     console.error('Action:', e.action);
-    //     console.error('Trigger:', e.trigger);
-    // });
-
-    // ADD CLIPBOARD LOGIC HERE
-
-    //
-    // const signatureClipboard = new ClipboardJS(".js-copy");
-    // const signatureHTMLClipboard = new ClipboardJS(".js-copy-src", {
-    //
-    //
-    //
-    //   text: () => {
-    //     return this.$refs.sourceWrapper.innerHTML;
-    //   }
-    //
-    //
-    // });
-
-
-
   }
 }
 </script>
