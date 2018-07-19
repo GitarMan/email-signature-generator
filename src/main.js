@@ -23,7 +23,7 @@ new Vue({
 
 
 var clipboardCopyText = new ClipboardJS('.js-copy');
-clipboardCopyText.on('success', function(e){
+clipboardCopyText.on('success', function(){
   var btnEl = document.getElementById('js-copy');
   btnEl.classList.add('feedback');
   setTimeout(function(){ btnEl.classList.remove('feedback'); }, 3000);
@@ -36,7 +36,7 @@ var clipboardCopySrc = new ClipboardJS('.js-copy-src', {
         return targetElement;
     }
 });
-clipboardCopySrc.on('success', function(e){
+clipboardCopySrc.on('success', function(){
   var btnEl = document.getElementById('js-copy-src');
   btnEl.classList.add('feedback');
   setTimeout(function(){ btnEl.classList.remove('feedback'); }, 3000);

@@ -7,42 +7,102 @@
           <h2>Input</h2>
           <form>
             <input
-              tabindex="1"
               v-model="name"
               placeholder="Name"
               autocomplete="new-name" />
             <input
-              tabindex="2"
               v-model="title"
               placeholder="Title"
               autocomplete="new-title" />
             <input
-              tabindex="3"
+              v-model="license"
+              placeholder="License Number"
+              autocomplete="license-number" />
+            <input
+              v-model="addressLine1"
+              placeholder="Address Line 1"
+              autocomplete="addressLine1" />
+            <input
+              v-model="addressLine2"
+              placeholder="Address Line 2"
+              autocomplete="addressLine2" />
+            <input
+              v-model="city"
+              placeholder="City"
+              autocomplete="city" />
+            <input
+              v-model="state"
+              placeholder="State"
+              autocomplete="state" />
+            <input
+              v-model="zipcode"
+              placeholder="Zip Code"
+              autocomplete="zipcode" />
+            <input
               v-model="telephone1"
               placeholder="Phone"
               autocomplete="new-phone1" />
             <input
-              tabindex="4"
               v-model="telephone2"
               placeholder="Phone 2"
               autocomplete="new-phone2" />
             <input
-              tabindex="5"
-              v-model="image"
-              placeholder="Img src"
-              autocomplete="new-image" />
+              v-model="email"
+              placeholder="Email"
+              autocomplete="email" />
             <input
-              tabindex="6"
-              v-model="license"
-              placeholder="License Number"
-              autocomplete="license-number" />
+              v-model="website"
+              placeholder="Website"
+              autocomplete="website" />
+            <input
+              v-model="facebook"
+              placeholder="Facebook"
+              autocomplete="facebook" />
+            <input
+              v-model="linkedin"
+              placeholder="LinkedIn"
+              autocomplete="linkedin" />
+            <input
+              v-model="twitter"
+              placeholder="Twitter"
+              autocomplete="twitter" />
+            <input
+              v-model="youtube"
+              placeholder="YouTube"
+              autocomplete="youtube" />
+            <input
+              id="logo-checkbox"
+              type="checkbox"
+              v-model="logoCheckbox" />
+            <label for="logo-checkbox">Display Logo</label>
           </form>
         </div>
         <div class="creator__output">
           <h2>Output</h2>
           <div class="creator__source">
 
-            <div id="source-wrapper" ref="sourceWrapper"><table id="source" cellpadding="0" cellspacing="0" style="font-family:Helvetica, Arial, sans-serif;font-size:14px;font-weight:normal;color:#37474f;text-align:left;line-height:20px;"> <tr> <td style="font-size:0px;"> <img v-if="image !== ''" :src="image || rick" border="0" style="padding-top: 8px;" width="100" height="100"> <img v-else :src="rick" border="0" style="padding-top: 8px;" width="100" height="100"> </td> <td style="padding-left:10px;"> <span style="font-weight: bold;">{{ name || "Rick Sanchez" }}</span>, <span style="color: #78909c;">{{ title || "Inventor" }}</span> <br> <a tabindex="-1" :href="tel1" style="color:#1f96f2;"> {{ telephone1 || "+137 Earth 1 415 555 5555" }}</a> <span v-if="telephone2" style="color:#999;"> | </span> <a tabindex="-1" :href="tel2" style="color:#1f96f2;"> {{ telephone2 }}</a> <br> <span>{{ license }}</span> </td> </tr> </table></div><!-- #source-wrapper -->
+            <div id="source-wrapper" ref="sourceWrapper">
+                <table id="source" cellpadding="0" cellspacing="0" style="font-family:Helvetica, Arial, sans-serif;font-size:14px;font-weight:normal;color:#37474f;text-align:left;line-height:20px;">
+                    <tr>
+                        <td style="font-size:0px;"> <img v-if="logoCheckbox" src="https://agencies.connectsai.com/wp-content/uploads/sites/44/2018/04/FOY-Temp-Logo.png" border="0" style="padding-top: 8px;" width="100"> </td>
+                        <td style="padding-left:10px;">
+                            <span style="font-weight: bold;">{{ name || "Rick Sanchez" }}</span>, <span style="color: #78909c;">{{ title || "Inventor" }}</span>
+                            <span v-if="license !== ''"> <br>License #{{ license }}</span>
+                            <span v-if="addressLine1 !== ''"> <br>{{ addressLine1 }}</span>
+                            <span v-if="addressLine2 !== ''"> <br>{{ addressLine2 }}</span>
+                            <span v-if="city !== ''"> <br>{{ city }}</span><span v-if="state !== ''">, {{ state }}</span><span v-if="zipcode !== ''"> {{ zipcode }}</span>
+                            <br> <a tabindex="-1" :href="tel1" style="color:#1f96f2;"> {{ telephone1 || "+137 Earth 1 415 555 5555" }}</a><span v-if="telephone2" style="color:#999;"> | </span> <a tabindex="-1" :href="tel2" style="color:#1f96f2;"> {{ telephone2 }}</a>
+                            <span v-if="email!==''"> <br> <a tabindex="-1" :href="emailLink" style="color:#1f96f2;"> {{ email }}</a> </span>
+                            <br> <span v-if="website!==''" style="color:#999;"> • <a tabindex="-1" :href="checkHttp(website)" style="color:#1f96f2;">Website</a> </span>
+                            <span v-if="facebook!==''" style="color:#999;"> • <a tabindex="-1" :href="checkHttp(facebook)" style="color:#1f96f2;">Facebook</a> </span>
+                            <span v-if="linkedin!==''" style="color:#999;"> • <a tabindex="-1" :href="checkHttp(linkedin)" style="color:#1f96f2;">LinkedIn</a> </span>
+                            <span v-if="twitter!==''" style="color:#999;"> • <a tabindex="-1" :href="checkHttp(twitter)" style="color:#1f96f2;">Twitter</a> </span>
+                            <span v-if="youtube!==''" style="color:#999;"> • <a tabindex="-1" :href="checkHttp(youtube)" style="color:#1f96f2;">YouTube</a> </span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <!-- #source-wrapper -->
 
             <div id="raw-html">
               <hr>
@@ -206,6 +266,7 @@ h2 {
       margin-bottom: 12px;
       &:last-child { margin-bottom: 0; }
     }
+    input[type='checkbox'] { width: auto; }
   }
 
   &__output {
@@ -230,7 +291,10 @@ h2 {
       #raw-html {
         margin: 10px;
       }
-      #source { margin-bottom: 40px; }
+      #source {
+        margin-top: 40px;
+        margin-bottom: 40px;
+      }
     }
   }
 
@@ -310,22 +374,38 @@ export default {
       telephone2: "",
       image: "",
       imageHref: "",
-      license: ""
+      license: "",
+      logoCheckbox: "true",
+      email: "",
+      website: "",
+      facebook: "",
+      twitter: "",
+      linkedin: "",
+      youtube: "",
+      addressLine1: "",
+      addressLine2: "",
+      city: "",
+      state: "",
+      zipcode: ""
     };
   },
-  // methods: {
-  //   rawHTML() {
-  //     var html = document.getElementById("source-wrapper").innerHTML;
-  //     return html;
-  //   }
-  // },
+  methods: {
+    checkHttp: function(url) {
+      url = url.startsWith("http://") || url.startsWith("https://") ? url : "http://" + url;
+      return url;
+    }
+  },
   computed: {
     tel1() {
       return `tel:${this.telephone1.replace(/ /g, "").replace(/\D/g, "")}`;
     },
     tel2() {
       return `tel:${this.telephone2.replace(/ /g, "").replace(/\D/g, "")}`;
+    },
+    emailLink() {
+      return 'mailto:' + this.email;
     }
+
     // rawHTML() {
     //   var html = document.getElementById("source-wrapper").innerHTML;
     //   return html;
