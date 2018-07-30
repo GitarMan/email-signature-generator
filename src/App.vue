@@ -41,11 +41,19 @@
             <input
               v-model="telephone1"
               placeholder="Phone"
-              autocomplete="new-phone1" />
+              autocomplete="phone1" />
+            <input
+              v-model="telephone1description"
+              placeholder="Phone Description"
+              autocomplete="phone1-description" />
             <input
               v-model="telephone2"
               placeholder="Phone 2"
-              autocomplete="new-phone2" />
+              autocomplete="phone2" />
+            <input
+              v-model="telephone2description"
+              placeholder="Phone 2 Description"
+              autocomplete="phone2-description" />
             <input
               v-model="email"
               placeholder="Email"
@@ -91,7 +99,7 @@
                             <span v-if="addressLine1 !== ''"> <br>{{ addressLine1 }}</span>
                             <span v-if="addressLine2 !== ''"> <br>{{ addressLine2 }}</span>
                             <span v-if="city !== ''"> <br>{{ city }}</span><span v-if="state !== ''">, {{ state }}</span><span v-if="zipcode !== ''"> {{ zipcode }}</span>
-                            <br> <a tabindex="-1" :href="tel1" style="color:#1f96f2;"> {{ telephone1 || "+137 Earth 1 415 555 5555" }}</a><span v-if="telephone2" style="color:#999;"> | </span> <a tabindex="-1" :href="tel2" style="color:#1f96f2;"> {{ telephone2 }}</a>
+                            <br> <a tabindex="-1" :href="tel1" style="color:#1f96f2;"> {{ telephone1 || "+137 Earth 1 415 555 5555" }}</a> <span style="color: #78909c;"> {{ telephone1description }}</span> <span v-if="telephone2" style="color:#999;"> • </span> <a v-if="telephone2" tabindex="-1" :href="tel2" style="color:#1f96f2;"> {{ telephone2 }}</a> <span style="color: #78909c;"> {{ telephone2description }}</span>
                             <span v-if="email!==''"> <br> <a tabindex="-1" :href="emailLink" style="color:#1f96f2;"> {{ email }}</a> </span>
                             <br> <span v-if="website!==''" style="color:#999;"> • <a tabindex="-1" :href="checkHttp(website)" style="color:#1f96f2;">Website</a> </span>
                             <span v-if="facebook!==''" style="color:#999;"> • <a tabindex="-1" :href="checkHttp(facebook)" style="color:#1f96f2;">Facebook</a> </span>
@@ -361,6 +369,27 @@ h2 {
 
 
 <script>
+import ClipboardJS from '../node_modules/clipboard/dist/clipboard.min.js';
+
+var clipboardCopyText = new ClipboardJS('.js-copy');
+clipboardCopyText.on('success', function(){
+  var btnEl = document.getElementById('js-copy');
+  btnEl.classList.add('feedback');
+  setTimeout(function(){ btnEl.classList.remove('feedback'); }, 3000);
+});
+
+var clipboardCopySrc = new ClipboardJS('.js-copy-src', {
+    target: function() {
+        var targetElement = document.getElementById('raw-html-text');
+        return targetElement;
+    }
+});
+
+clipboardCopySrc.on('success', function(){
+  var btnEl = document.getElementById('js-copy-src');
+  btnEl.classList.add('feedback');
+  setTimeout(function(){ btnEl.classList.remove('feedback'); }, 3000);
+});
 
 export default {
   data() {
@@ -370,12 +399,13 @@ export default {
       title: "",
       email: "",
       telephone1: "",
+      telephone1description: "",
       telephone2: "",
+      telephone2description: "",
       image: "",
       imageHref: "",
       license: "",
       logoCheckbox: "true",
-      email: "",
       website: "",
       facebook: "",
       twitter: "",
