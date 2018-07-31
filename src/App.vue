@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="email-signature-app">
     <h1>Email Signature Creator</h1>
     <div class="creator">
       <section>
@@ -161,210 +161,196 @@ $tablet: 740px;
 $desktop: 980px;
 $wide: 1300px;
 
-
-
-html {
-  height: 100%;
-  box-sizing: content-box;
-  *, *:before, *:after { box-sizing: inherit; }
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  background: #eee;
-}
-
-#app {
+#email-signature-app {
   font-family: 'Avenirblack','Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: $copy;
-}
-
-h1 {
-  text-align: center;
-  margin-bottom: 2rem;
-  margin-top: 1rem;
-  font-weight: 500;
-  color: $black;
-  font-size: 1rem;
-
-  @media (min-width: $tablet) {
-    font-size: 1.5rem;
-    margin-bottom: 3rem;
-    margin-top: 3rem;
-  }
-}
-
-h2 {
-  margin: 0;
-  font-size: 0.9rem;
-  font-weight: 400;
-  color: $black;
-  position: absolute;
-  top: -1rem;
-  left: 0.5rem;
-  b { color: $purple; }
-  @media (min-width: $tablet) {
-    left: -1px;
-    &::before {
-      counter-increment: steps;
-      content: "" counter(steps) ". ";
-      color: $purple;
-      font-weight: 500;
-    }
-  }
-}
 
 
-.creator {
-  width: 100%;
-  margin: 0 auto 88px;
-  counter-reset: steps;
-
-  @media (min-width: $tablet) {
-    width: 90%;
-    max-width: 1024px;
-  }
-
-  section {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
-
-    @media (min-width: $tablet) {
-      margin-bottom: 2rem;
-    }
-  }
-
-  section > div {
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-    background: #fff;
-    padding: 0.5rem;
-
-    @media (min-width: $tablet) {
-      position: relative;
-      padding: 0.75rem;
-    }
-  }
-
-  &__input {
-    position: relative;
+  h1 {
+    text-align: center;
     margin-bottom: 2rem;
-    &:last-of-type {
-      margin-bottom: 0;
-    }
+    margin-top: 1rem;
+    font-weight: 500;
+    color: $black;
+    font-size: 1rem;
 
     @media (min-width: $tablet) {
-      flex: 0 10rem;
-      margin-right: 2rem;
-      margin-bottom: 0;
+      font-size: 1.5rem;
+      margin-bottom: 3rem;
+      margin-top: 3rem;
     }
-
-    form {
-      width: 100%;
-    }
-
-    input {
-      width: 100%;
-      box-sizing: border-box;
-      font-size: 0.75rem;
-      margin-bottom: 12px;
-      &:last-child { margin-bottom: 0; }
-    }
-    input[type='checkbox'] { width: auto; }
   }
 
-  &__output {
-    flex: 1;
-
-    @media (max-width: $tablet) {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      z-index: 2;
-      margin-bottom: 0;
-      h2 { display: none; }
-    }
-
-    .creator__source {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-
-      #source,
-      #raw-html {
-        margin: 10px;
-      }
-      #source {
-        margin-top: 40px;
-        margin-bottom: 40px;
+  h2 {
+    margin: 0;
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: $black;
+    position: absolute;
+    top: -1rem;
+    left: 0.5rem;
+    b { color: $purple; }
+    @media (min-width: $tablet) {
+      left: -1px;
+      &::before {
+        counter-increment: steps;
+        content: "" counter(steps) ". ";
+        color: $purple;
+        font-weight: 500;
       }
     }
   }
 
-  &__source {
-    box-sizing: border-box;
-    border: 2px dashed rgba(#444, 0.75);
-    height: 100%;
-    display: flex;
-    position: relative;
-    > div { margin: auto; }
-  }
 
-  &__copy {
-    margin-left: 2rem;
-    position: relative;
-    flex: 0 200px;
-    @media (min-width: $tablet) {
-      height: 12rem;
-    }
-  }
-
-  &__copy {
-    display: flex;
-    flex-flow: row wrap;
+  .creator {
+    width: 100%;
+    margin: 0 auto 88px;
+    counter-reset: steps;
 
     @media (min-width: $tablet) {
-      flex: 0 10rem;
-      margin-right: 2rem;
+      width: 90%;
+      max-width: 1024px;
     }
 
-    button {
+    section {
       display: flex;
       flex-flow: row wrap;
-      align-items: center;
-      cursor: pointer;
-      margin: 0;
-      background: #eee;
-      border: none;
-      width: 100%;
+      justify-content: space-around;
+
+      @media (min-width: $tablet) {
+        margin-bottom: 2rem;
+      }
+    }
+
+    section > div {
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-      border: 1px solid $green;
-      border-radius: 2px;
-      transition: box-shadow 0.2s ease;
-      padding: 1rem 0;
-      &:first-of-type { margin-bottom: 1rem; }
-      svg, span { flex: 0 100%; }
-      span { margin-top: 8px; line-height: 1rem; }
-      path { fill: $green; transition: opacity 0.3s ease; }
-      path:last-child { opacity: 0; }
-      .feedback__text { line-height: 1rem; display: none; }
-      &.feedback path:first-child { opacity: 0; }
-      &.feedback path:last-child { opacity: 1; }
-      &.feedback > span { display: none; }
-      &.feedback > span.feedback__text { display: initial; }
-      &:focus { outline: none; }
-      &:active {
-        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.02), 0 1px 1px rgba(0, 0, 0, 0.04);
-        path { fill: darken(#369662, 10%); }
+      background: #fff;
+      padding: 0.5rem;
+
+      @media (min-width: $tablet) {
+        position: relative;
+        padding: 0.75rem;
+      }
+    }
+
+    &__input {
+      position: relative;
+      margin-bottom: 2rem;
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+
+      @media (min-width: $tablet) {
+        flex: 0 10rem;
+        margin-right: 2rem;
+        margin-bottom: 0;
+      }
+
+      form {
+        width: 100%;
+      }
+
+      input {
+        width: 100%;
+        box-sizing: border-box;
+        font-size: 0.75rem;
+        margin-bottom: 12px;
+        &:last-child { margin-bottom: 0; }
+      }
+      input[type='checkbox'] { width: auto; }
+    }
+
+    &__output {
+      flex: 1;
+
+      @media (max-width: $tablet) {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 2;
+        margin-bottom: 0;
+        h2 { display: none; }
+      }
+
+      .creator__source {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        #source,
+        #raw-html {
+          margin: 10px;
+        }
+        #source {
+          margin-top: 40px;
+          margin-bottom: 40px;
+        }
+      }
+    }
+
+    &__source {
+      box-sizing: border-box;
+      border: 2px dashed rgba(#444, 0.75);
+      height: 100%;
+      display: flex;
+      position: relative;
+      > div { margin: auto; }
+    }
+
+    &__copy {
+      margin-left: 2rem;
+      position: relative;
+      flex: 0 200px;
+      @media (min-width: $tablet) {
+        height: 12rem;
+      }
+    }
+
+    &__copy {
+      display: flex;
+      flex-flow: row wrap;
+
+      @media (min-width: $tablet) {
+        flex: 0 10rem;
+        margin-right: 2rem;
+      }
+
+      button {
+        display: flex;
+        flex-flow: row wrap;
+        align-items: center;
+        cursor: pointer;
+        margin: 0;
+        background: #eee;
+        border: none;
+        width: 100%;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+        border: 1px solid $green;
+        border-radius: 2px;
+        transition: box-shadow 0.2s ease;
+        padding: 1rem 0;
+        &:first-of-type { margin-bottom: 1rem; }
+        svg, span { flex: 0 100%; }
+        span { margin-top: 8px; line-height: 1rem; }
+        path { fill: $green; transition: opacity 0.3s ease; }
+        path:last-child { opacity: 0; }
+        .feedback__text { line-height: 1rem; display: none; }
+        &.feedback path:first-child { opacity: 0; }
+        &.feedback path:last-child { opacity: 1; }
+        &.feedback > span { display: none; }
+        &.feedback > span.feedback__text { display: initial; }
+        &:focus { outline: none; }
+        &:active {
+          box-shadow: 0 1px 1px rgba(0, 0, 0, 0.02), 0 1px 1px rgba(0, 0, 0, 0.04);
+          path { fill: darken(#369662, 10%); }
+        }
       }
     }
   }
-}
-
+} // #email-signature-app
 </style>
 
 
